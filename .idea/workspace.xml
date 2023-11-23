@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2473c26-094d-470e-87f4-e865bcdb8861" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/erudio/model/service/PersonServices.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/erudio/endpoints/GreetingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/erudio/endpoints/PersonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/erudio/endpoints/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/erudio/model/endpoints/PersonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/erudio/model/Greeting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/erudio/model/entities/Greeting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/erudio/model/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/erudio/model/entities/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/erudio/service/PersonServices.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +23,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -45,6 +53,11 @@
     &quot;last_opened_file_path&quot;: &quot;/home/everton/Development/Spring/rest-erudio/rest-erudio&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.erudio.exceptions.response" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="RestErudioApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.erudio.RestErudioApplication" />

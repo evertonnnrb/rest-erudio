@@ -1,7 +1,7 @@
-package com.erudio.endpoints;
+package com.erudio.model.endpoints;
 
-import com.erudio.model.Person;
-import com.erudio.service.PersonServices;
+import com.erudio.model.entities.Person;
+import com.erudio.model.service.PersonServices;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -29,13 +29,13 @@ public class PersonController {
         return services.add(person);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person update(@PathVariable Long id) {
-        return services.update(id);
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Person update(@PathVariable Long id, @RequestBody Person person) {
+        return services.update(id, person);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void delete(@PathVariable Long id){
+    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void delete(@PathVariable Long id) {
         services.delete(id);
     }
 }
