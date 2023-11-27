@@ -11,19 +11,20 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.Date;
+import java.util.NoSuchElementException;
 
 @ControllerAdvice
 @RestController
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
-    public final ResponseEntity<ExceptionResponse> handlerAllExceptions(Exception e, WebRequest req) {
+    @ExceptionHandler(NoSuchElementException.class)
+    public final ResponseEntity<ExceptionResponse> handlerAllExceptions(NoSuchElementException e, WebRequest req) {
         ExceptionResponse response = new ExceptionResponse(e.getMessage(), new Date(), req.getDescription(false));
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(ResourceNotFoundExcetion.class)
-    public final ResponseEntity<ExceptionResponse> handlerNotFoundException(Exception e, WebRequest req) {
+    public final ResponseEntity<ExceptionResponse> handlerNotFoundException(ResourceNotFoundExcetion e, WebRequest req) {
         ExceptionResponse response = new ExceptionResponse(e.getMessage(), new Date(), req.getDescription(false));
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }

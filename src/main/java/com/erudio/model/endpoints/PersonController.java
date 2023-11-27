@@ -1,41 +1,62 @@
 package com.erudio.model.endpoints;
 
-import com.erudio.model.entities.Person;
+import com.erudio.model.entities.dto.PersonDto;
 import com.erudio.model.service.PersonServices;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.util.List;
+import java.net.URI;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/persons/v1")
 @RequiredArgsConstructor
 public class PersonController {
     private final PersonServices services;
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person findById(@PathVariable Long id) {
-        return services.findById(id);
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<PersonDto> findById(@PathVariable Long id) {
+        return ResponseEntity.ok().body(services.findById(id));
     }
 
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Person> getAll() {
-        return services.getAll();
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Page<PersonDto>> getAll(@RequestParam(value = "page", defaultValue = "0") Integer page,
+                                                  @RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage,
+                                                  @RequestParam(value = "direction", defaultValue = "ASC") String direction,
+                                                  @RequestParam(value = "orderBy", defaultValue = "firstName") String orderBy) {
+
+        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
+        Page<PersonDto> personPage = services.findAllPaged(pageRequest);
+        return ResponseEntity.ok().body(personPage);
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person create(@RequestBody Person person) {
-        return services.add(person);
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE
+            , produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<PersonDto> create(@RequestBody PersonDto person) {
+        PersonDto personDto = services.add(person);
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(personDto.getId())
+                .toUri();
+        return ResponseEntity.created(uri).build();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person update(@PathVariable Long id, @RequestBody Person person) {
-        return services.update(id, person);
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<PersonDto> update(@PathVariable Long id, @RequestBody PersonDto person) {
+        services.update(id, person);
+        return ResponseEntity.ok().build();
     }
 
-    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void delete(@PathVariable Long id) {
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         services.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

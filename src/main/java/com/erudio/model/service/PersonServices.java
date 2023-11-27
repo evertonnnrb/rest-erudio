@@ -1,9 +1,13 @@
 package com.erudio.model.service;
 
+import com.erudio.exceptions.ResourceNotFoundExcetion;
 import com.erudio.model.entities.Person;
+import com.erudio.model.entities.dto.PersonDto;
 import com.erudio.model.repository.PersonRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,9 +20,10 @@ public class PersonServices {
     private final PersonRepository repository;
     private Logger logger = Logger.getLogger(PersonServices.class.getName());
 
-    public Person findById(Long id) {
+    public PersonDto findById(Long id) {
         logger.info("find by id");
-        return repository.findById(id).orElseThrow();
+        Person person = repository.findById(id).orElseThrow();
+        return new PersonDto(person);
     }
 
     public List<Person> getAll() {
@@ -26,30 +31,40 @@ public class PersonServices {
         return repository.findAll();
     }
 
-    public Person add(Person person) {
+    public PersonDto add(PersonDto personDto) {
         logger.info("create a person");
-        return repository.save(person);
+        Person person = new Person();
+        person.setFirstName(personDto.getFirstName());
+        person.setLastName(personDto.getLastName());
+        person.setGender(personDto.getGender());
+        person.setAddress(personDto.getAddress());
+        person = repository.save(person);
+        return new PersonDto(person);
     }
 
-    public Person update(Long id, Person person) {
+    public PersonDto update(Long id, PersonDto dto) {
         logger.info("update a person");
-        Person personSaved = findById(id);
-        BeanUtils.copyProperties(person, personSaved, "id");
-
-        /*
-        Person entity = findById(id);
-        entity.setFirstname(person.getFirstname());
-        entity.setLastname(person.getLastname());
-        entity.setAddress(person.getAddress());
-        entity.setGender(person.getGender());
-        */
-
-        return repository.save(person);
+        Person person = repository.getReferenceById(id);
+        try {
+            person.setFirstName(dto.getFirstName());
+            person.setLastName(dto.getLastName());
+            person.setGender(dto.getGender());
+            person.setAddress(dto.getAddress());
+            person = repository.save(person);
+            return new PersonDto(person);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundExcetion("No entity found for this id " + id);
+        }
 
     }
 
     public void delete(Long id) {
         logger.info("deleting a person");
         repository.deleteById(id);
+    }
+
+    public Page<PersonDto> findAllPaged(PageRequest pageRequest) {
+        Page<Person> all = repository.findAll(pageRequest);
+        return all.map(PersonDto::new);
     }
 }

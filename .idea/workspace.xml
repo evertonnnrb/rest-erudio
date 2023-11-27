@@ -5,15 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2473c26-094d-470e-87f4-e865bcdb8861" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/erudio/model/service/PersonServices.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/erudio/endpoints/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/erudio/model/endpoints/PersonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/erudio/model/Greeting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/erudio/model/entities/Greeting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/erudio/model/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/erudio/model/entities/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/erudio/service/PersonServices.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/erudio/exceptions/handler/CustomizedResponseEntityExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/erudio/exceptions/handler/CustomizedResponseEntityExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/erudio/exceptions/response/ExceptionResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/erudio/exceptions/response/ExceptionResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/erudio/model/endpoints/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/erudio/model/endpoints/PersonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/erudio/model/entities/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/erudio/model/entities/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/erudio/model/service/PersonServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/erudio/model/service/PersonServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

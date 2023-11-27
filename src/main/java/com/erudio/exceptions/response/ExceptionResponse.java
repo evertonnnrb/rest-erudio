@@ -10,6 +10,5 @@ import java.util.Date;
 public class ExceptionResponse {
     private String message;
     private Date date;
-
     private String description;
 }

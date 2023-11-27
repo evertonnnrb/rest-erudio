@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name = "tb_persons")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,11 +19,12 @@ public class Person {
     @EqualsAndHashCode.Include
     private Long id;
 
-    private String firstname;
+    private String firstName;
 
-    private String lastname;
+    private String lastName;
 
     private String address;
 
     private String gender;
+
 }
