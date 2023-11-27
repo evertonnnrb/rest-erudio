@@ -2,6 +2,7 @@ package com.erudio.model.endpoints;
 
 import com.erudio.model.entities.dto.PersonDto;
 import com.erudio.model.service.PersonServices;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,7 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/persons/v1")
+@RequestMapping("/api/persons/v1")
 @RequiredArgsConstructor
 public class PersonController {
     private final PersonServices services;
@@ -25,6 +26,8 @@ public class PersonController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "List people on database", description = "List pagealbe of person",
+    tags = {"PEOPLE"})
     public ResponseEntity<Page<PersonDto>> getAll(@RequestParam(value = "page", defaultValue = "0") Integer page,
                                                   @RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage,
                                                   @RequestParam(value = "direction", defaultValue = "ASC") String direction,

@@ -4,11 +4,17 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/erudio?useTimezone=true&serverTimezone=UTC
     username: root
     password: root
+
   jpa:
     open-in-view: false
     hibernate:
-      ddl-auto: create-drop
-    properties:
+      ddl-auto: create
+      properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.MySQL56Dialect
         show-sql: false
+
+springdoc:
+  pathsToMach: /api/**/v1/**
+  swagger-ui:
+    use-root-path: true
